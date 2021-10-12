@@ -9,7 +9,7 @@ i2c = busio.I2C(board.SCL, board.SDA)
 ads = ADS.ADS1115(i2c)
 
 chan = AnalogIn(ads, ADS.P0, ADS.P1)
-ads.gain(2)
+ads.gain = 2
 
 print("{:>5}\t{:>5}".format("raw", "v"))
 
