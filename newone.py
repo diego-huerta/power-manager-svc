@@ -28,10 +28,11 @@ start = time.monotonic()
 
 # Read the same channel over and over
 for i in range(SAMPLES):
-    data[i] = chan.value
+#    data[i] = chan.value
+    print(chan.voltage)
 
-end = time.monotonic()
-total_time = end - start
+#end = time.monotonic()
+#total_time = end - start
 
-print("Time of capture: {}s".format(total_time))
-print("Sample rate requested={} actual={}".format(RATE, SAMPLES / total_time))
+#print("Time of capture: {}s".format(total_time))
+#print("Sample rate requested={} actual={}".format(RATE, SAMPLES / total_time))
