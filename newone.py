@@ -6,7 +6,7 @@ from adafruit_ads1x15.ads1x15 import Mode
 from adafruit_ads1x15.analog_in import AnalogIn
 
 # Data collection setup
-FACTOR = 30.4058832
+FACTOR = 42.425519
 RATE = 3300
 SAMPLES = 1000
 
