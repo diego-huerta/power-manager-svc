@@ -31,7 +31,7 @@ start = time.monotonic()
 print('antes' + '\t' + 'despues')
 for i in range(SAMPLES):
 #    data[i] = chan.value
-    print(chan.voltage + '\t' + chan.voltage * 3.040588318)
+    print(str(chan.voltage) + '\t' + str(chan.voltage * 3.040588318))
 
 #end = time.monotonic()
 #total_time = end - start
