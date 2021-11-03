@@ -6,6 +6,7 @@ from adafruit_ads1x15.ads1x15 import Mode
 from adafruit_ads1x15.analog_in import AnalogIn
 
 # Data collection setup
+FACTOR = 30.4058832
 RATE = 3300
 SAMPLES = 1000
 
@@ -28,10 +29,12 @@ data = [None]*SAMPLES
 start = time.monotonic()
 
 # Read the same channel over and over
-print('antes' + '\t' + 'despues')
 for i in range(SAMPLES):
-#    data[i] = chan.value
-    print(str(chan.voltage) + '\t' + str(chan.voltage * 3.040588318))
+    data[i] = chan.voltage
+
+print('antes' + '\t' + 'despues')
+for sample in data:
+    print(str(sample) + '\t' + str(sample * FACTOR))
 
 #end = time.monotonic()
 #total_time = end - start
