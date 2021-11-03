@@ -9,6 +9,7 @@ from adafruit_ads1x15.analog_in import AnalogIn
 RATE = 3300
 SAMPLES = 1000
 
+# test
 # Create the I2C bus with a fast frequency
 i2c = busio.I2C(board.SCL, board.SDA, frequency=1000000)
 
