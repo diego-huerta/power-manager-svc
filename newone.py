@@ -28,9 +28,10 @@ data = [None]*SAMPLES
 start = time.monotonic()
 
 # Read the same channel over and over
+print('antes' + '\t' + 'despues')
 for i in range(SAMPLES):
 #    data[i] = chan.value
-    print(chan.voltage * 3.040588318)
+    print(chan.voltage + '\t' + chan.voltage * 3.040588318)
 
 #end = time.monotonic()
 #total_time = end - start
