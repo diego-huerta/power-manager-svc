@@ -14,15 +14,17 @@ class PowerMonitor:
     FREQUENCY = 1000000
     RATE = 3300
     SAMPLE_SIZE = 20
-    FACTOR = 42.425519
+    C_FACTOR = 42.425519
+    V_FACTOR = 1
     C_CHANNEL = None
     V_CHANNEL = None
 
-    def __init__(self, frequency, rate, sample_size, factor):
+    def __init__(self, frequency, rate, sample_size, current_factor, voltage_factor):
         self.FREQUENCY = frequency
         self.RATE = rate
         self.SAMPLE_SIZE = sample_size
-        self.FACTOR = factor
+        self.C_FACTOR = current_factor
+        self.V_FACTOR = voltage_factor
         i2c = busio.I2C(board.SCL, board.SDA, frequency=self.FREQUENCY)
         ads = ADS.ADS1115(i2c)
         ads.mode = Mode.CONTINUOUS
@@ -39,7 +41,9 @@ class PowerMonitor:
                 samples = Sampler.take_mixed_samples(
                     current_input_channel=self.C_CHANNEL,
                     voltage_input_channel=self.V_CHANNEL,
-                    sample_size=self.SAMPLE_SIZE
+                    sample_size=self.SAMPLE_SIZE,
+                    current_factor=self.C_FACTOR,
+                    voltage_factor=self.V_FACTOR
                 )
                 rms = Calculator.calculate_rms(samples[0])
                 mean_voltage = Calculator.calculate_voltage(samples[1])
