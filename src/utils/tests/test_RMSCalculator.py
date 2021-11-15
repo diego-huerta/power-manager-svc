@@ -1,4 +1,4 @@
-from src.utils.RMSCalculator import calculate_rms
+from src.utils.PowerCalculators import calculate_rms
 
 
 def test_if_rms_calculator_works():
