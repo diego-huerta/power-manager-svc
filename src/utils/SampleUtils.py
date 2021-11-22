@@ -25,8 +25,7 @@ def take_single_samples(
         channel: AnalogIn,
         sample_size: int,
         factor: float,
-        voltage_factor: float
-) -> tuple:
+) -> list:
     buffer = [None] * sample_size
     for i in range(sample_size):
         buffer[i] = channel.voltage * factor

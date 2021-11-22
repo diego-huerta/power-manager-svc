@@ -38,18 +38,21 @@ class PowerMonitor:
                 create_tmpfile('rms') as rms_file, \
                 create_tmpfile('power') as power_file:
             while True:
-                samples = Sampler.take_mixed_samples(
-                    current_input_channel=self.C_CHANNEL,
-                    voltage_input_channel=self.V_CHANNEL,
+                c_samples = Sampler.take_single_samples(
+                    channel=self.V_CHANNEL,
                     sample_size=self.SAMPLE_SIZE,
-                    current_factor=self.C_FACTOR,
-                    voltage_factor=self.V_FACTOR
+                    factor=self.V_FACTOR
                 )
-                rms = Calculator.calculate_rms(samples[0])
-                mean_voltage = Calculator.calculate_voltage(samples[1])
+                v_samples = Sampler.take_single_samples(
+                    channel=self.V_CHANNEL,
+                    sample_size=self.SAMPLE_SIZE,
+                    factor=self.V_FACTOR
+                )
+                rms = Calculator.calculate_rms(c_samples)
+                mean_voltage = Calculator.calculate_voltage(v_samples)
                 power = Calculator.calculate_power(mean_voltage, rms)
-                save_to_tmpfile(raw_current_file, samples[0])
-                save_to_tmpfile(raw_voltage_file, samples[1])
+                save_to_tmpfile(raw_current_file, c_samples[0])
+                save_to_tmpfile(raw_voltage_file, v_samples[1])
                 save_to_tmpfile(rms_file, rms)
                 save_to_tmpfile(power_file, power)
                 time.sleep(0.5)
