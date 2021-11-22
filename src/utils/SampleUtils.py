@@ -1,6 +1,9 @@
 from adafruit_ads1x15.analog_in import AnalogIn
 
 
+"""
+This is depreacated. Do not use. It doesn't work correctly
+"""
 def take_mixed_samples(
         current_input_channel: AnalogIn,
         voltage_input_channel: AnalogIn,
@@ -16,3 +19,16 @@ def take_mixed_samples(
 
     # TODO: Replace this tuple with a custom class
     return current_buffer, voltage_buffer
+
+
+def take_single_samples(
+        channel: AnalogIn,
+        sample_size: int,
+        factor: float,
+        voltage_factor: float
+) -> tuple:
+    buffer = [None] * sample_size
+    for i in range(sample_size):
+        buffer[i] = channel.voltage * factor
+
+    return buffer
